@@ -74,13 +74,14 @@ pub fn machine_model_symbols(mm: &MachineModel) -> Vec<Symbol> {
 pub fn additional_env_symbols() -> Vec<Symbol> {
     vec![
         Symbol::builtin_function("__CPROVER_initialize", vec![], Type::empty()),
-        Symbol::typedef("__CPROVER_size_t", "__CPROVER_size_t", Type::size_t(), Location::none()),
-        Symbol::static_variable(
+        //Symbol::typedef("__CPROVER_size_t", "__CPROVER_size_t", Type::size_t(), Location::none()),
+        Symbol::typedef("__CPROVER_size_t", "__CPROVER_size_t", Type::size_t(), Location::none())
+        /*Symbol::static_variable(
             "__CPROVER_memory",
             "__CPROVER_memory",
             Type::unsigned_int(8).infinite_array_of(),
             Location::none(),
-        )
+        )*/
         .with_is_extern(true),
     ]
 }

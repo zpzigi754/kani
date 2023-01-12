@@ -39,7 +39,10 @@ pub struct CargoOutputs {
 impl KaniSession {
     /// Calls `cargo_build` to generate `*.symtab.json` files in `target_dir`
     pub fn cargo_build(&self) -> Result<CargoOutputs> {
-        let build_target = env!("TARGET"); // see build.rs
+        //        let build_target = env!("TARGET"); // see build.rs
+        // XXX: build the harness with the below target (cross-compile)
+        //      (hardcoded for the testing purpose)
+        let build_target = "armv7-unknown-linux-gnueabi";
         let metadata = MetadataCommand::new()
             // restrict metadata command to host platform. References:
             // https://github.com/rust-lang/rust-analyzer/issues/6908

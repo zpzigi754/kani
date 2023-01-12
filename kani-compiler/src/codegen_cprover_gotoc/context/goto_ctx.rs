@@ -500,6 +500,46 @@ fn machine_model_from_session(sess: &Session) -> MachineModel {
                 word_size: int_width,
             }
         }
+        // XXX: added for the CBMC machine model different to host environment
+        "arm" => {
+            let bool_width = 8;
+            let char_is_unsigned = true;
+            let char_width = 8;
+            let double_width = 64;
+            let float_width = 32;
+            let int_width = 32;
+            let long_double_width = 64;
+            let long_int_width = 32;
+            let long_long_int_width = 64;
+            let short_int_width = 16;
+            let single_width = 32;
+            let wchar_t_is_unsigned = false;
+            let wchar_t_width = 32;
+
+            MachineModel {
+                architecture: "arm".to_string(),
+                alignment,
+                bool_width,
+                char_is_unsigned,
+                char_width,
+                double_width,
+                float_width,
+                int_width,
+                is_big_endian,
+                long_double_width,
+                long_int_width,
+                long_long_int_width,
+                memory_operand_size: int_width / 8,
+                null_is_zero: true,
+                pointer_width,
+                rounding_mode: RoundingMode::ToNearest,
+                short_int_width,
+                single_width,
+                wchar_t_is_unsigned,
+                wchar_t_width,
+                word_size: int_width,
+            }
+        }
         _ => {
             panic!("Unsupported architecture: {architecture}");
         }

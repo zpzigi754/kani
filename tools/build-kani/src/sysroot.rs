@@ -69,7 +69,10 @@ pub fn kani_sysroot_bin() -> PathBuf {
 /// TODO: Don't copy Kani's libstd.
 pub fn build_lib() {
     // Run cargo build with -Z build-std
-    let target = env!("TARGET");
+    //    let target = env!("TARGET");
+    // XXX: build kani library with the below target
+    //      (hardcoded for the testing purpose)
+    let target = "armv7-unknown-linux-gnueabi";
     let target_dir = env!("KANI_BUILD_LIBS");
     let args = [
         "build",
