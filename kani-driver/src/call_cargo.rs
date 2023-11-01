@@ -45,7 +45,8 @@ pub struct CargoOutputs {
 impl KaniSession {
     /// Calls `cargo_build` to generate `*.symtab.json` files in `target_dir`
     pub fn cargo_build(&self, keep_going: bool) -> Result<CargoOutputs> {
-        let build_target = env!("TARGET"); // see build.rs
+        //        let build_target = env!("TARGET"); // see build.rs
+        let build_target = "aarch64-unknown-linux-gnu";
         let metadata = self.cargo_metadata(build_target)?;
         let target_dir = self
             .args
@@ -274,7 +275,8 @@ impl KaniSession {
 pub fn cargo_config_args() -> Vec<OsString> {
     [
         "--target",
-        env!("TARGET"),
+        //        env!("TARGET"),
+        "aarch64-unknown-linux-gnu",
         // Propagate `--cfg=kani` to build scripts.
         "-Zhost-config",
         "-Ztarget-applies-to-host",
