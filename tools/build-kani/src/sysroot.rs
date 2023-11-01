@@ -93,7 +93,11 @@ fn build_kani_lib(
     extra_rustc_args: &[&str],
 ) -> Result<()> {
     // Run cargo build with -Z build-std
-    let target = env!("TARGET");
+    //    let target = env!("TARGET");
+    // We use `aarch64-unknown-linux-gnu` instead of `aarch64-unknown-none-softfloat`, 
+    // because `aarch64-unknown-none-softfloat` does not support `-Z build-std` which
+    // is required for building kani library.
+    let target = "aarch64-unknown-linux-gnu";
     let target_dir = env!("KANI_BUILD_LIBS");
     let args = [
         "build",
